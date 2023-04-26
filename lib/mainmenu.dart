@@ -1,8 +1,8 @@
 //This class is the main page of the game. Here the user can login and access every page
 import 'package:flutter/material.dart';
-import 'package:ping/gamescreen.dart';
-import 'package:ping/about.dart';
-import 'package:ping/settings.dart';
+import 'gamescreen.dart';
+import 'about.dart';
+import 'settings.dart';
 
 class MenuScreen extends StatelessWidget {
   const MenuScreen({super.key});
@@ -87,7 +87,8 @@ class MenuScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const SettingsScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => const SettingsScreen()),
                 );
               },
               backgroundColor: Colors.grey[900],
