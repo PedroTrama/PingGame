@@ -21,7 +21,7 @@ class Ping extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return MaterialApp(
       routes: {
         '/game_screen': (context) => const GameScreen(),
       },
