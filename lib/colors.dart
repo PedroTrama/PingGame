@@ -1,6 +1,6 @@
 //This screen allows the player to change the color of the bars
 import 'package:flutter/material.dart';
-import 'package:ping/settings.dart';
+import 'settings.dart';
 
 class ColorsScreen extends StatelessWidget {
   ColorsScreen({Key? key}) : super(key: key);
@@ -61,4 +61,3 @@ class ColorsScreen extends StatelessWidget {
     );
   }
 }
-
