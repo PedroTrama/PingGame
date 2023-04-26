@@ -29,7 +29,6 @@ class _AboutScreenState extends State<AboutScreen> {
                   ),
                 ),
               ),
-              
               const Padding(
                 padding: EdgeInsets.all(16),
                 child: Text(
@@ -40,10 +39,10 @@ class _AboutScreenState extends State<AboutScreen> {
                   ),
                 ),
               ),
-                            Image.asset( // Add an Image widget here
-                'lib/assets/atari.jpg', // Replace with the path to your image
-                height: 50, // Set the desired height of the image
-                width: 50, // Set the desired width of the image
+              Image.asset(
+                'lib/assets/atari.jpg',
+                height: 50,
+                width: 50,
               ),
             ],
           ),
