@@ -1,7 +1,7 @@
 //This class is the settings screen where the player configures the game
 import 'package:flutter/material.dart';
-import 'package:ping/mainmenu.dart';
-import 'package:ping/colors.dart';
+import 'mainmenu.dart';
+import 'colors.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -14,7 +14,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   // Default settings
   double speed = 0.3;
   bool sound = true;
-  final List<bool> difficulty = [false, true, false];
+  int selectedDifficulty = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +63,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -72,39 +71,54 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     style: TextStyle(fontSize: 20, color: Colors.white),
                   ),
                   const SizedBox(width: 10),
-                  Checkbox(
-                    activeColor: Colors.black,
-                    value: difficulty[0],
-                    onChanged: (newEasy) {
-                      setState(() {
-                        difficulty[0] = newEasy!;
-                      });
-                    },
+                  Row(
+                    children: [
+                      Radio(
+                        activeColor: Colors.white,
+                        value: 0,
+                        groupValue: selectedDifficulty,
+                        onChanged: (value) {
+                          setState(() {
+                            selectedDifficulty = value as int;
+                          });
+                        },
+                      ),
+                      const Text('Fácil',
+                          style: TextStyle(fontSize: 20, color: Colors.white)),
+                    ],
                   ),
-                  const Text('Fácil',
-                      style: TextStyle(fontSize: 20, color: Colors.white)),
-                  Checkbox(
-                    activeColor: Colors.black,
-                    value: difficulty[1],
-                    onChanged: (newMedium) {
-                      setState(() {
-                        difficulty[1] = newMedium!;
-                      });
-                    },
+                  Row(
+                    children: [
+                      Radio(
+                        activeColor: Colors.white,
+                        value: 1,
+                        groupValue: selectedDifficulty,
+                        onChanged: (value) {
+                          setState(() {
+                            selectedDifficulty = value as int;
+                          });
+                        },
+                      ),
+                      const Text('Médio',
+                          style: TextStyle(fontSize: 20, color: Colors.white)),
+                    ],
                   ),
-                  const Text('Médio',
-                      style: TextStyle(fontSize: 20, color: Colors.white)),
-                  Checkbox(
-                    activeColor: Colors.black,
-                    value: difficulty[2],
-                    onChanged: (newHard) {
-                      setState(() {
-                        difficulty[2] = newHard!;
-                      });
-                    },
+                  Row(
+                    children: [
+                      Radio(
+                        activeColor: Colors.white,
+                        value: 2,
+                        groupValue: selectedDifficulty,
+                        onChanged: (value) {
+                          setState(() {
+                            selectedDifficulty = value as int;
+                          });
+                        },
+                      ),
+                      const Text('Difícil',
+                          style: TextStyle(fontSize: 20, color: Colors.white)),
+                    ],
                   ),
-                  const Text('Difícil',
-                      style: TextStyle(fontSize: 20, color: Colors.white)),
                 ],
               ),
             ],
@@ -118,7 +132,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const ColorsScreen()),
+                MaterialPageRoute(builder: (context) => ColorsScreen()),
               );
             },
             backgroundColor: Colors.grey[900],
