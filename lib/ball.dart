@@ -1,3 +1,4 @@
+//This Class controls the game ball
 import 'package:flutter/material.dart';
 
 class Ball extends StatelessWidget {

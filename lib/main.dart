@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart'; //setPreferredOrientations function
 import 'gamescreen.dart';
+import 'mainmenu.dart';
 
 //Running the game
 void main() {
@@ -20,8 +21,11 @@ class Ping extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: GameScreen(),
+    return  MaterialApp(
+      routes: {
+        '/game_screen': (context) => const GameScreen(),
+      },
+      home: MenuScreen(),
     );
   }
 }
