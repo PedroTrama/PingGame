@@ -1,4 +1,4 @@
-//This class is the settings screen where the player configures the game
+//This is the settings screen where the player configures the game
 import 'package:flutter/material.dart';
 import 'mainmenu.dart';
 import 'colors.dart';

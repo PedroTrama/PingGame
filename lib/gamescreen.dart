@@ -1,4 +1,4 @@
-//This is the main screen of the game, where the players control the ball to hit the bars
+//This is the actual game screen, where the players control the ball to hit the bars
 import 'package:flutter/material.dart';
 import 'bars.dart';
 import 'ball.dart';

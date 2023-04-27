@@ -1,18 +1,17 @@
 //This screen allows the player to change the color of the bars
 import 'package:flutter/material.dart';
-import 'settings.dart';
 
 class ColorsScreen extends StatelessWidget {
   ColorsScreen({Key? key}) : super(key: key);
-
+  //Lists to generate the ListView with the builder
   final List text = ["Branco", "Vermelho", "Azul", "Amarelo", "Verde"];
 
   final List colors = [
     Colors.white,
-    Color(0xffd23569),
-    Color(0xff389ae8),
-    Color(0xffecdd5a),
-    Color(0xff69dc6d)
+    const Color(0xffd23569),
+    const Color(0xff389ae8),
+    const Color(0xffecdd5a),
+    const Color(0xff69dc6d)
   ];
 
   final List icons = [
@@ -37,7 +36,7 @@ class ColorsScreen extends StatelessWidget {
                 elevation: 5,
                 color: colors[index % colors.length],
                 child: ListTile(
-                    leading: Icon(Icons.brush),
+                    leading: const Icon(Icons.brush),
                     title: Text(text[index % text.length])),
               );
             },
@@ -50,7 +49,7 @@ class ColorsScreen extends StatelessWidget {
                   elevation: 5,
                   color: colors[index % colors.length],
                   child: ListTile(
-                      leading: Icon(Icons.brush),
+                      leading: const Icon(Icons.brush),
                       title: Text(text[index % text.length])),
                 );
               },

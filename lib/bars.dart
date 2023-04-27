@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 class Bars extends StatelessWidget {
+  //Coordinates
   final x;
   final y;
 

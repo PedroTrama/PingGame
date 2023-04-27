@@ -1,4 +1,4 @@
-//This class is the main page of the game. Here the user can login and access every page
+//This screen is the main page of the game. Here the user can login and access every page through the drawer
 import 'package:flutter/material.dart';
 import 'gamescreen.dart';
 import 'about.dart';

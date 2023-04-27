@@ -1,4 +1,4 @@
-//This page shows infos about the game to the player
+//This page shows infos about the game and app to the player
 import 'package:flutter/material.dart';
 
 class AboutScreen extends StatefulWidget {

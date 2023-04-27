@@ -1,7 +1,8 @@
-//This Class controls the game ball
+//This class controls the game ball
 import 'package:flutter/material.dart';
 
 class Ball extends StatelessWidget {
+  //Coordinates
   final x;
   final y;
 
