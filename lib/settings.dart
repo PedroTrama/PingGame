@@ -7,10 +7,10 @@ class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
 
   @override
-  _SettingsScreenState createState() => _SettingsScreenState();
+  SettingsScreenState createState() => SettingsScreenState();
 }
 
-class _SettingsScreenState extends State<SettingsScreen> {
+class SettingsScreenState extends State<SettingsScreen> {
   // Default settings
   double speed = 0.3;
   bool sound = true;
@@ -129,6 +129,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           FloatingActionButton(
+            heroTag: const Text("colorsFAT"),
             onPressed: () {
               Navigator.push(
                 context,
@@ -140,6 +141,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             child: const Icon(Icons.brush),
           ),
           FloatingActionButton(
+            heroTag: const Text("menuFAT"),
             onPressed: () {
               Navigator.push(
                 context,

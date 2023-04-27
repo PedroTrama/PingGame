@@ -84,6 +84,7 @@ class MenuScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           FloatingActionButton(
+              heroTag: const Text("settingsFAT"),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -95,6 +96,7 @@ class MenuScreen extends StatelessWidget {
               elevation: 0,
               child: const Icon(Icons.settings)),
           FloatingActionButton(
+            heroTag: const Text("aboutFAT"),
             onPressed: () {
               Navigator.push(
                 context,

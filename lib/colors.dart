@@ -36,8 +36,8 @@ class ColorsScreen extends StatelessWidget {
                 elevation: 5,
                 color: colors[index % colors.length],
                 child: ListTile(
-                    leading: const Icon(Icons.brush),
-                    title: Text(text[index % text.length])),
+                    onTap: () {},
+                    title: Text(text[index % text.length], textAlign: TextAlign.center)),
               );
             },
           )),
@@ -49,8 +49,8 @@ class ColorsScreen extends StatelessWidget {
                   elevation: 5,
                   color: colors[index % colors.length],
                   child: ListTile(
-                      leading: const Icon(Icons.brush),
-                      title: Text(text[index % text.length])),
+                      onTap: () {},
+                      title: Text(text[index % text.length], textAlign: TextAlign.center)),
                 );
               },
             ),
