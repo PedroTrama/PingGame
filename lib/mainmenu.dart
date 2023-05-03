@@ -3,9 +3,20 @@ import 'package:flutter/material.dart';
 import 'gamescreen.dart';
 import 'about.dart';
 import 'settings.dart';
+import 'package:hive/hive.dart';
 
-class MenuScreen extends StatelessWidget {
-  const MenuScreen({super.key});
+class MenuScreen extends StatefulWidget {
+  const MenuScreen({Key? key}) : super(key: key);
+
+  @override
+  MenuScreenState createState() => MenuScreenState();
+}
+
+class MenuScreenState extends State<MenuScreen> {
+  final loginBox = Hive.box('userData');
+  final passwordBox = Hive.box('userData');
+  String login = '';
+  String password = '';
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +27,25 @@ class MenuScreen extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             TextFormField(
+              onChanged: (newLogin) {
+                  setState(() {
+                    login = newLogin;
+                    loginBox.put('login', newLogin);
+                    login = loginBox.get('login');
+                  });
+                },
                 decoration: const InputDecoration(
                     hintText: 'Login',
                     icon: Icon(Icons.account_circle_rounded,
                         color: Colors.grey))),
             TextFormField(
+                onChanged: (newPassword) {
+                  setState(() {
+                    password = newPassword;
+                    passwordBox.put('password', newPassword);
+                    password = passwordBox.get('password');
+                  });
+                },
                 obscureText: true,
                 decoration: const InputDecoration(
                     hintText: 'Senha',
@@ -84,7 +109,7 @@ class MenuScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           FloatingActionButton(
-              heroTag: const Text("settingsFAT"),
+              heroTag: const Text("settingsFAB"),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -96,7 +121,7 @@ class MenuScreen extends StatelessWidget {
               elevation: 0,
               child: const Icon(Icons.settings)),
           FloatingActionButton(
-            heroTag: const Text("aboutFAT"),
+            heroTag: const Text("aboutFAB"),
             onPressed: () {
               Navigator.push(
                 context,

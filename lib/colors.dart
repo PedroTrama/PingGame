@@ -1,5 +1,7 @@
 //This screen allows the player to change the color of the bars
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+
 
 class ColorsScreen extends StatelessWidget {
   ColorsScreen({Key? key}) : super(key: key);

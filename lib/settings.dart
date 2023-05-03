@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'mainmenu.dart';
 import 'colors.dart';
+import 'package:hive/hive.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -15,6 +16,10 @@ class SettingsScreenState extends State<SettingsScreen> {
   double speed = 0.3;
   bool sound = true;
   int selectedDifficulty = 1;
+
+  final speedBox = Hive.box('settings');
+  final soundBox = Hive.box('settings');
+  final difficultyBox = Hive.box('settings');
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +43,8 @@ class SettingsScreenState extends State<SettingsScreen> {
                 onChanged: (newSpeed) {
                   setState(() {
                     speed = newSpeed;
+                    speedBox.put('speed', newSpeed);
+                    speed = speedBox.get('speed');
                   });
                 },
               ),
@@ -58,6 +65,8 @@ class SettingsScreenState extends State<SettingsScreen> {
                     onChanged: (newSound) {
                       setState(() {
                         sound = newSound;
+                        soundBox.put('sound', newSound);
+                        sound = soundBox.get('sound');
                       });
                     },
                   ),
@@ -80,6 +89,8 @@ class SettingsScreenState extends State<SettingsScreen> {
                         onChanged: (value) {
                           setState(() {
                             selectedDifficulty = value as int;
+                            difficultyBox.put('selectedDifficulty', value);
+                            selectedDifficulty = difficultyBox.get('selectedDifficulty');
                           });
                         },
                       ),
@@ -96,6 +107,8 @@ class SettingsScreenState extends State<SettingsScreen> {
                         onChanged: (value) {
                           setState(() {
                             selectedDifficulty = value as int;
+                            difficultyBox.put('selectedDifficulty', value);
+                            selectedDifficulty = difficultyBox.get('selectedDifficulty');
                           });
                         },
                       ),
@@ -112,6 +125,8 @@ class SettingsScreenState extends State<SettingsScreen> {
                         onChanged: (value) {
                           setState(() {
                             selectedDifficulty = value as int;
+                            difficultyBox.put('selectedDifficulty', value);
+                            selectedDifficulty = difficultyBox.get('selectedDifficulty');
                           });
                         },
                       ),
@@ -129,7 +144,7 @@ class SettingsScreenState extends State<SettingsScreen> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           FloatingActionButton(
-            heroTag: const Text("colorsFAT"),
+            heroTag: const Text("colorsFAB"),
             onPressed: () {
               Navigator.push(
                 context,
@@ -141,7 +156,7 @@ class SettingsScreenState extends State<SettingsScreen> {
             child: const Icon(Icons.brush),
           ),
           FloatingActionButton(
-            heroTag: const Text("menuFAT"),
+            heroTag: const Text("menuFAB"),
             onPressed: () {
               Navigator.push(
                 context,
