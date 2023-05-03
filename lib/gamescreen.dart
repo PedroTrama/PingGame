@@ -13,6 +13,15 @@ class GameScreen extends StatefulWidget {
 }
 
 class GameScreenState extends State<GameScreen> {
+  final colorsBox = Hive.box('colors');
+  var rightBarColor;
+  var leftBarColor;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
