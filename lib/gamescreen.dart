@@ -3,12 +3,16 @@ import 'package:flutter/material.dart';
 import 'bars.dart';
 import 'ball.dart';
 import 'mainmenu.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
+class GameScreen extends StatefulWidget {
+  const GameScreen({Key? key});
 
-class GameScreen extends StatelessWidget {
-  const GameScreen({super.key});
+  @override
+  GameScreenState createState() => GameScreenState();
+}
 
+class GameScreenState extends State<GameScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
