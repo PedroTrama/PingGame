@@ -20,6 +20,10 @@ class GameScreenState extends State<GameScreen> {
   @override
   void initState() {
     super.initState();
+    rightBarColor =
+        colorsBox.get('colors')['players']['rightPlayer']['gambeBarColor'];
+    leftBarColor =
+        colorsBox.get('colors')['players']['leftPlayer']['gambeBarColor'];
   }
 
   @override
@@ -30,10 +34,10 @@ class GameScreenState extends State<GameScreen> {
         child: Stack(
           children: const [
             //left bar
-            Bars(x: -0.9, y: 0),
+            Bars(x: -0.9, y: 0, color: rightBarColor),
 
             //right bar
-            Bars(x: 0.9, y: 0),
+            Bars(x: 0.9, y: 0, color: leftBarColor),
 
             //ball
             Ball(x: 0, y: 0),
