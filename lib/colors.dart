@@ -1,4 +1,6 @@
 //This screen allows the player to change the color of the bars
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -10,6 +12,8 @@ class ColorsScreen extends StatefulWidget {
 }
 
 class ColorsScreenState extends State<ColorsScreen> {
+  var boxData;
+
   final List text = ["Branco", "Vermelho", "Azul", "Amarelo", "Verde"];
   final List colors = [
     Colors.white,
@@ -23,9 +27,20 @@ class ColorsScreenState extends State<ColorsScreen> {
 
   @override
   void initState() {
-    if (colorsBox.isNotEmpty) {
-    } else {}
     super.initState();
+    getColorsBox();
+  }
+
+  Future<void> getColorsBox() async {
+    if (colors.isEmpty) {
+      boxData = {
+        'players': {
+          "leftPlayer": {"gameBarColor": colors[0]},
+          "rightPlayer": {"gameBarColor": colors[0]}
+        }
+      };
+    }
+    colorsBox.put('pickColor', boxData);
   }
 
   @override
@@ -48,9 +63,9 @@ class ColorsScreenState extends State<ColorsScreen> {
                 child: ListTile(
                     onTap: () {
                       setState(() {
-                        ///////TESTE///////
-                        colorsBox.put('colors', colors[index]);
-                        ///////////////////
+                        boxData['players']['leftPlayer']['gambeBarColor'] =
+                            colors[index];
+                        colorsBox.put('colors', boxData);
                       });
                     },
                     title: Text(text[index % text.length],
@@ -66,7 +81,13 @@ class ColorsScreenState extends State<ColorsScreen> {
                   elevation: 5,
                   color: colors[index % colors.length],
                   child: ListTile(
-                      onTap: () {},
+                      onTap: () {
+                        setState(() {
+                          boxData['players']['rightPlayer']['gambeBarColor'] =
+                              colors[index];
+                          colorsBox.put('colors', boxData);
+                        });
+                      },
                       title: Text(text[index % text.length],
                           textAlign: TextAlign.center)),
                 );
