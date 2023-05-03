@@ -9,14 +9,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart'; //setPreferredOrientations function
 import 'gamescreen.dart';
 import 'mainmenu.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations( //sets the whole app to landscape mode
+  SystemChrome.setPreferredOrientations(//sets the whole app to landscape mode
       [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
+  await Hive.initFlutter();
   await Hive.openBox('settings');
   await Hive.openBox('userData');
+  await Hive.openBox('colors');
 
   runApp(const Ping());
 }
