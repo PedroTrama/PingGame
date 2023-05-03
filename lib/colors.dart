@@ -1,13 +1,16 @@
 //This screen allows the player to change the color of the bars
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
+class ColorsScreen extends StatefulWidget {
+  const ColorsScreen({Key? key}) : super(key: key);
 
-class ColorsScreen extends StatelessWidget {
-  ColorsScreen({Key? key}) : super(key: key);
-  //Lists to generate the ListView with the builder
+  @override
+  ColorsScreenState createState() => ColorsScreenState();
+}
+
+class ColorsScreenState extends State<ColorsScreen> {
   final List text = ["Branco", "Vermelho", "Azul", "Amarelo", "Verde"];
-
   final List colors = [
     Colors.white,
     const Color(0xffd23569),
@@ -16,9 +19,14 @@ class ColorsScreen extends StatelessWidget {
     const Color(0xff69dc6d)
   ];
 
-  final List icons = [
-    Icons.brush,
-  ];
+  final colorsBox = Hive.box('colors');
+
+  @override
+  void initState() {
+    if (colorsBox.isNotEmpty) {
+    } else {}
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +46,15 @@ class ColorsScreen extends StatelessWidget {
                 elevation: 5,
                 color: colors[index % colors.length],
                 child: ListTile(
-                    onTap: () {},
-                    title: Text(text[index % text.length], textAlign: TextAlign.center)),
+                    onTap: () {
+                      setState(() {
+                        ///////TESTE///////
+                        colorsBox.put('colors', colors[index]);
+                        ///////////////////
+                      });
+                    },
+                    title: Text(text[index % text.length],
+                        textAlign: TextAlign.center)),
               );
             },
           )),
@@ -52,7 +67,8 @@ class ColorsScreen extends StatelessWidget {
                   color: colors[index % colors.length],
                   child: ListTile(
                       onTap: () {},
-                      title: Text(text[index % text.length], textAlign: TextAlign.center)),
+                      title: Text(text[index % text.length],
+                          textAlign: TextAlign.center)),
                 );
               },
             ),
