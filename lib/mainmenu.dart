@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'gamescreen.dart';
 import 'about.dart';
 import 'settings.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({Key? key}) : super(key: key);
@@ -13,10 +13,27 @@ class MenuScreen extends StatefulWidget {
 }
 
 class MenuScreenState extends State<MenuScreen> {
+  final TextEditingController loginController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
   final loginBox = Hive.box('userData');
   final passwordBox = Hive.box('userData');
-  String login = '';
-  String password = '';
+
+  @override
+  void initState() {
+    if (loginBox.isNotEmpty) {
+      loginController.text = loginBox.get('login');
+    } else {
+      loginController.text = '';
+    }
+
+    if (passwordBox.isNotEmpty) {
+      passwordController.text = passwordBox.get('password');
+    } else {
+      passwordController.text = '';
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +44,13 @@ class MenuScreenState extends State<MenuScreen> {
         child: ListView(
           children: <Widget>[
             TextFormField(
-              onChanged: (newLogin) {
+                controller: loginController,
+                onChanged: (newLogin) {
                   setState(() {
-                    login = newLogin;
-                    loginBox.put('login', newLogin);
-                    login = loginBox.get('login');
+                    String loginText = loginController.text;
+                    newLogin = loginText;
+                    loginBox.put('login', loginText);
+                    newLogin = loginBox.get('login');
                   });
                 },
                 decoration: const InputDecoration(
@@ -39,11 +58,13 @@ class MenuScreenState extends State<MenuScreen> {
                     icon: Icon(Icons.account_circle_rounded,
                         color: Colors.grey))),
             TextFormField(
+                controller: passwordController,
                 onChanged: (newPassword) {
                   setState(() {
-                    password = newPassword;
-                    passwordBox.put('password', newPassword);
-                    password = passwordBox.get('password');
+                    String passwordText = passwordController.text;
+                    newPassword = passwordText;
+                    passwordBox.put('password', passwordText);
+                    newPassword = passwordBox.get('password');
                   });
                 },
                 obscureText: true,
