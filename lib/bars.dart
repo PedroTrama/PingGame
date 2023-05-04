@@ -20,7 +20,7 @@ class BarsState extends State<Bars> {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
         child: Container(
-          color: widget.color,
+          //color: widget.color,
           width: 20,
           height: MediaQuery.of(context).size.width / 5,
         ),
