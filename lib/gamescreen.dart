@@ -21,15 +21,15 @@ class GameScreenState extends State<GameScreen> {
   void initState() {
     if (colorsBox.isNotEmpty) {
       rightBarColor = colorsBox.get('colors');
-      }
+    }
     if (colorsBox.isNotEmpty) {
       leftBarColor = colorsBox.get('colors');
-      }
+    }
     super.initState();
     rightBarColor =
-        colorsBox.get('colors')['players']['rightPlayer'][gameBarColor];
+        colorsBox.get('colors')['players']['rightPlayer']['gameBarColor'];
     leftBarColor =
-        colorsBox.get('colors')['players']['leftPlayer'][gameBarColor];
+        colorsBox.get('colors')['players']['leftPlayer']['gameBarColor'];
   }
 
   @override
@@ -38,12 +38,12 @@ class GameScreenState extends State<GameScreen> {
       backgroundColor: Colors.grey[900],
       body: Center(
         child: Stack(
-          children: const [
+          children: [
             //left bar
-            Bars(x: -0.9, y: 0, color: 'leftBarColor'),
+            Bars(x: -0.9, y: 0, color: leftBarColor),
 
             //right bar
-            Bars(x: 0.9, y: 0, color: 'rightBarColor'),
+            Bars(x: 0.9, y: 0, color: rightBarColor),
 
             //ball
             Ball(x: 0, y: 0),
