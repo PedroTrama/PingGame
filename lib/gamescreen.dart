@@ -27,9 +27,9 @@ class GameScreenState extends State<GameScreen> {
       }
     super.initState();
     rightBarColor =
-        colorsBox.get('colors')['players']['rightPlayer']['gameBarColor'];
+        colorsBox.get('colors')['players']['rightPlayer'][gameBarColor];
     leftBarColor =
-        colorsBox.get('colors')['players']['leftPlayer']['gambeBarColor'];
+        colorsBox.get('colors')['players']['leftPlayer'][gameBarColor];
   }
 
   @override
