@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class ColorsScreen extends StatefulWidget {
-  const ColorsScreen({Key? key}) : super(key: key);
+  ColorsScreen({Key? key}) : super(key: key);
 
   @override
   ColorsScreenState createState() => ColorsScreenState();
@@ -61,7 +61,7 @@ class ColorsScreenState extends State<ColorsScreen> {
                 child: ListTile(
                     onTap: () {
                       setState(() {
-                        boxData['players']['leftPlayer']['gambeBarColor'] =
+                        boxData['players']['leftPlayer']['gameBarColor'] =
                             colors[index];
                         colorsBox.put('colors', boxData);
                       });
@@ -81,7 +81,7 @@ class ColorsScreenState extends State<ColorsScreen> {
                   child: ListTile(
                       onTap: () {
                         setState(() {
-                          boxData['players']['rightPlayer']['gambeBarColor'] =
+                          boxData['players']['rightPlayer']['gameBarColor'] =
                               colors[index];
                           colorsBox.put('colors', boxData);
                         });
