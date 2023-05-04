@@ -19,17 +19,14 @@ class GameScreenState extends State<GameScreen> {
 
   @override
   void initState() {
-    if (colorsBox.isNotEmpty) {
-      rightBarColor = colorsBox.get('colors');
-    }
-    if (colorsBox.isNotEmpty) {
-      leftBarColor = colorsBox.get('colors');
-    }
     super.initState();
-    rightBarColor =
-        colorsBox.get('colors')['players']['rightPlayer']['gameBarColor'];
-    leftBarColor =
-        colorsBox.get('colors')['players']['leftPlayer']['gameBarColor'];
+    getBarColors();
+  }
+
+  Future<void> getBarColors() async {
+    var gameBarsColors = colorsBox.get('gameBarsColors');
+    rightBarColor = gameBarsColors?['leftGameBarColor'] ?? Colors.white;
+    leftBarColor = gameBarsColors?['rightGameBarColor'] ?? Colors.white;
   }
 
   @override

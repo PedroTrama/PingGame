@@ -23,6 +23,7 @@ class BarsState extends State<Bars> {
           //color: widget.color,
           width: 20,
           height: MediaQuery.of(context).size.width / 5,
+          color: widget.color,
         ),
       ),
     );

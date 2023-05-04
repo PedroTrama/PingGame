@@ -30,15 +30,14 @@ class ColorsScreenState extends State<ColorsScreen> {
   }
 
   Future<void> getColorsBox() async {
-    if (colors.isEmpty) {
+    if (!colorsBox.containsKey("gameBarsColors")) {
       boxData = {
-        'players': {
-          "leftPlayer": {"gameBarColor": colors[0]},
-          "rightPlayer": {"gameBarColor": colors[0]}
-        }
+        "leftGameBarColor": colors[0],
+        "rightGameBarColor": colors[0],
       };
     }
-    colorsBox.put('color', boxData);
+    colorsBox.put('gameBarsColors', boxData);
+    print(colorsBox.get('gameBarsColors'));
   }
 
   @override
@@ -60,11 +59,9 @@ class ColorsScreenState extends State<ColorsScreen> {
                 color: colors[index % colors.length],
                 child: ListTile(
                     onTap: () {
-                      setState(() {
-                        boxData['players']['leftPlayer']['gameBarColor'] =
-                            colors[index];
-                        colorsBox.put('colors', boxData);
-                      });
+                      boxData['leftGameBarColor'] = colors[index];
+                      colorsBox.put('gameBarsColors', boxData);
+                      print(colorsBox.get('gameBarsColors'));
                     },
                     title: Text(text[index % text.length],
                         textAlign: TextAlign.center)),
@@ -80,11 +77,9 @@ class ColorsScreenState extends State<ColorsScreen> {
                   color: colors[index % colors.length],
                   child: ListTile(
                       onTap: () {
-                        setState(() {
-                          boxData['players']['rightPlayer']['gameBarColor'] =
-                              colors[index];
-                          colorsBox.put('colors', boxData);
-                        });
+                        boxData['rightGameBarColor'] = colors[index];
+                        colorsBox.put('gameBarsColors', boxData);
+                        print(colorsBox.get('gameBarsColors'));
                       },
                       title: Text(text[index % text.length],
                           textAlign: TextAlign.center)),
