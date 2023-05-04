@@ -38,7 +38,7 @@ class ColorsScreenState extends State<ColorsScreen> {
         }
       };
     }
-    colorsBox.put('pickColor', boxData);
+    colorsBox.put('color', boxData);
   }
 
   @override
