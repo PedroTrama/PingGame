@@ -1,12 +1,12 @@
 //This class controls the bars and sets a few defaults
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 class Bars extends StatefulWidget {
   //Coordinates
   final x;
   final y;
-  const Bars({Key? key, this.x, this.y}) : super(key: key);
+  final color;
+  const Bars({Key? key, this.x, this.y, this.color}) : super(key: key);
 
   @override
   BarsState createState() => BarsState();
@@ -20,7 +20,7 @@ class BarsState extends State<Bars> {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
         child: Container(
-          color: Colors.white,
+          color: widget.color,
           width: 20,
           height: MediaQuery.of(context).size.width / 5,
         ),

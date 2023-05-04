@@ -1,6 +1,4 @@
 //This screen allows the player to change the color of the bars
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 

@@ -173,7 +173,7 @@ class SettingsScreenState extends State<SettingsScreen> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ColorsScreen()),
+                MaterialPageRoute(builder: (context) => const ColorsScreen()),
               );
             },
             backgroundColor: Colors.grey[900],

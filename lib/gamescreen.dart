@@ -6,7 +6,7 @@ import 'mainmenu.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class GameScreen extends StatefulWidget {
-  const GameScreen({Key? key});
+  const GameScreen({Key? key}) : super(key: key);
 
   @override
   GameScreenState createState() => GameScreenState();
@@ -21,7 +21,7 @@ class GameScreenState extends State<GameScreen> {
   void initState() {
     super.initState();
     rightBarColor =
-        colorsBox.get('colors')['players']['rightPlayer']['gambeBarColor'];
+        colorsBox.get('colors')['players']['rightPlayer']['gameBarColor'];
     leftBarColor =
         colorsBox.get('colors')['players']['leftPlayer']['gambeBarColor'];
   }
@@ -34,10 +34,10 @@ class GameScreenState extends State<GameScreen> {
         child: Stack(
           children: const [
             //left bar
-            Bars(x: -0.9, y: 0, color: rightBarColor),
+            Bars(x: -0.9, y: 0, color: 'leftBarColor'),
 
             //right bar
-            Bars(x: 0.9, y: 0, color: leftBarColor),
+            Bars(x: 0.9, y: 0, color: 'rightBarColor'),
 
             //ball
             Ball(x: 0, y: 0),
