@@ -1,6 +1,5 @@
 //This page shows infos about the game and app to the player
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 class AboutScreen extends StatefulWidget {
   const AboutScreen({Key? key}) : super(key: key);
@@ -33,7 +32,7 @@ class AboutScreenState extends State<AboutScreen> {
               const Padding(
                 padding: EdgeInsets.all(16),
                 child: Text(
-                  'Esse jogo é inspirado no clássico de Atari Pong em que dois jogadores movem barras para impedir que a bolinha acerte a parede. Em Ping, você controla a bolinha!',
+                  'Esse jogo é inspirado no clássico de Atari Pong em que dois jogadores movem barras para impedir que a bolinha acerte a parede!',
                   style: TextStyle(
                     fontSize: 18,
                     color: Colors.white,
