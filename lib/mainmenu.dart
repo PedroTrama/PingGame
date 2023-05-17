@@ -76,19 +76,19 @@ class MenuScreenState extends State<MenuScreen> {
               child: Column(
                 children: const <Widget>[
                   ListTile(
-                    title: Text('Recorde: [-------]',
+                    title: Text('Velocidade: [-------]',
+                        style: TextStyle(fontSize: 16, color: Colors.grey)),
+                    //this text should change colors to a darker grey after the user logs in
+                  ),
+                  Divider(),
+                  ListTile(
+                    title: Text('Som: [-------]',
                         style: TextStyle(fontSize: 16, color: Colors.grey)),
                     //this text should change colors to a darker grey after the user logs in
                   ),
                   Divider(),
                   ListTile(
                     title: Text('Dificuldade: [-------]',
-                        style: TextStyle(fontSize: 16, color: Colors.grey)),
-                    //this text should change colors to a darker grey after the user logs in
-                  ),
-                  Divider(),
-                  ListTile(
-                    title: Text('Cor atual: [-------]',
                         style: TextStyle(fontSize: 16, color: Colors.grey)),
                     //this text should change colors to a darker grey after the user logs in
                   ),
