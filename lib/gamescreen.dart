@@ -1,11 +1,11 @@
-//This is the actual game screen, where the players control the ball to hit the bars
+// This is the actual game screen, where the players control the ball to hit the bars
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'startgame.dart';
 import 'bars.dart';
 import 'ball.dart';
 import 'mainmenu.dart';
-//https://docs.flame-engine.org/latest/flame/game_widget.html
+import 'dart:math';
 
 class GameScreen extends StatefulWidget {
   const GameScreen({Key? key}) : super(key: key);
@@ -15,25 +15,29 @@ class GameScreen extends StatefulWidget {
 }
 
 class GameScreenState extends State<GameScreen> {
-  //System variables
+  // System variables
   bool gameHasStarted = false;
+  Timer? timer;
 
-  //Ball variables
+  // Ball variables
   double ballX = 0;
   double ballY = 0;
-  bool right = true;
+  bool right = false;
   bool left = false;
   bool up = false;
   bool down = false;
+  var angle = [0.01, 0.02, 0.03, 0.04, 0.05];
+  double element = 0.01;
 
-  //Bars variables
+  // Bars variables
   double leftBarX = -0.9;
   double leftBarY = 0;
   double rightBarX = 0.9;
   double rightBarY = 0;
 
+  // Movement Functions
   void moveBall() {
-    ballDirection(); // Update the ball direction before moving it
+    ballDirection(); // Updates the ball direction before moving it
 
     // Horizontal Movement
     if (right) {
@@ -51,61 +55,71 @@ class GameScreenState extends State<GameScreen> {
     }
 
     // Vertical Movement
+      
     if (up) {
-      if (ballY < 1) {
-        ballY += 0.01; // Increment the y coordinate to move up
+      if (ballY <= 1) {
+        ballY += element; // Increment the y coordinate to move down
       } else {
-        ballY -= 0.01; // Decrease the y coordinate to change direction
+        ballY -= element; // Decrease the y coordinate to change direction
       }
     } else {
-      if (ballY > -1) {
-        ballY -= 0.01; // Decrement the y coordinate to move down
+      if (ballY >= -1) {
+        ballY -= element; // Decrement the y coordinate to move up
       } else {
-        ballY += 0.01; // Increase the y coordinate to change direction
+        ballY += element; // Increase the y coordinate to change direction
       }
     }
   }
 
+  // Ball direction controller
   void ballDirection() {
+
+    // Horizontal direction and colisions
     if (ballX >= rightBarX &&
         ballY >= (rightBarY - 0.25) &&
         ballY <= (rightBarY + 0.25)) {
       right = false; // Change the direction to move left
       left = true;
+      changeAngle();
     } else if (ballX <= leftBarX &&
         ballY >= (leftBarY - 0.25) &&
         ballY <= (leftBarY + 0.25)) {
       right = true; // Change the direction to move right
       left = false;
+      changeAngle();
+    
+    // Resets ball position when it hits either left or right wall
     } else if (ballX > rightBarX) {
-      right = true;
-      left = false;
-      up = false;
-      down = false;
+      print("ponto pra a esquerda");
       ballX = 0;
       ballY = 0;
+      //
+      //Add code here to increment left player's points
+      //
+      startGame();
     } else if (ballX < leftBarX) {
-      left = true;
-      right = false;
-      up = false;
-      down = false;
+      print("ponto para a direita");
       ballX = 0;
       ballY = 0;
+      //
+      //Add code here to increment right player's points
+      //
+      startGame(); 
     }
 
-    // Adjust ball movement based on collision with screen edges
+    // Adjust ball movement when it hits the upper and bottom walls
     if (ballY >= 1) {
       if (right) {
-        up = true;
-        down = false;
+        up = false;
+        down = true;
       } else {
         up = false;
         down = true;
       }
     } else if (ballY <= -1) {
       if (right) {
-        up = false;
-        down = true;
+        up = true;
+        down = false;
       } else {
         up = true;
         down = false;
@@ -113,15 +127,46 @@ class GameScreenState extends State<GameScreen> {
     }
   }
 
-  //System functions
+  // System functions
+
+  // Running game
   void startGame() {
-    gameHasStarted = true;
-    Timer.periodic(Duration(milliseconds: 35), (timer) {
-      setState(() {
-        moveBall();
+    if (gameHasStarted == false) {
+      gameHasStarted = true;
+      if (randomizerX() == 0) {
+        right = true;
+      } else {
+        left = true;
+      }
+      if (randomizerY() == 0) {
+        up = true;
+      } else {
+        down = true;
+      }
+      changeAngle();
+      Timer.periodic(Duration(milliseconds: 35), (timer) {
+        setState(() {
+          moveBall();
+        });
       });
-    });
+    }
   }
+
+  // Randomizer to pick 1 or 0
+  int randomizerX() {
+    Random random = Random();
+    return random.nextInt(2);
+  }
+    int randomizerY() {
+    Random random = Random();
+    return random.nextInt(2);
+  }
+  void changeAngle(){
+    final random = Random();
+      element = angle[random.nextInt(angle.length)];
+  }
+  
+
 
   @override
   Widget build(BuildContext context) {
