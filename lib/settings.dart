@@ -1,7 +1,6 @@
 //This is the settings screen where the player configures the game
 import 'package:flutter/material.dart';
 import 'mainmenu.dart';
-import 'colors.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -165,34 +164,17 @@ class SettingsScreenState extends State<SettingsScreen> {
           ),
         ),
       ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
-          FloatingActionButton(
-            heroTag: const Text("colorsFAB"),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ColorsScreen()),
-              );
-            },
-            backgroundColor: Colors.grey[900],
-            elevation: 0,
-            child: const Icon(Icons.brush),
-          ),
-          FloatingActionButton(
-            heroTag: const Text("menuFAB"),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const MenuScreen()),
-              );
-            },
-            backgroundColor: Colors.grey[900],
-            elevation: 0,
-            child: const Icon(Icons.arrow_back),
-          ),
-        ],
+      floatingActionButton: FloatingActionButton(
+        heroTag: const Text("menuFAB"),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const MenuScreen()),
+          );
+        },
+        backgroundColor: Colors.grey[900],
+        elevation: 0,
+        child: const Icon(Icons.arrow_back),
       ),
     );
   }
