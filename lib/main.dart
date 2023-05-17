@@ -18,7 +18,6 @@ void main() async {
   await Hive.initFlutter();
   await Hive.openBox('settings');
   await Hive.openBox('userData');
-  await Hive.openBox('colors');
 
   runApp(const Ping());
 }
