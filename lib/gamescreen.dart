@@ -18,6 +18,8 @@ class GameScreenState extends State<GameScreen> {
   // System variables
   bool gameHasStarted = false;
   Timer? timer;
+  int counter1 = 0;
+  int counter2 = 0;
 
   // Ball variables
   double ballX = 0;
@@ -89,20 +91,54 @@ class GameScreenState extends State<GameScreen> {
 
       // Resets ball position when it hits either left or right wall
     } else if (ballX > rightBarX) {
-      print("ponto pra a esquerda");
       ballX = 0;
       ballY = 0;
-      //
-      //Add code here to increment left player's points
-      //
+      counter1 += 1;
+      if (counter1 == 5) {
+        showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+                  title: const Text('Vitória do jogador 1'),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const MenuScreen()),
+                        );
+                      },
+                      child: const Text('Sair',
+                          style: TextStyle(color: Colors.black)),
+                    ),
+                  ],
+                ));
+      }
       startGame();
     } else if (ballX < leftBarX) {
-      print("ponto para a direita");
       ballX = 0;
       ballY = 0;
-      //
-      //Add code here to increment right player's points
-      //
+      counter2 += 1;
+      if (counter2 == 5) {
+        showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+                  title: const Text('Vitória do jogador 2'),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const MenuScreen()),
+                        );
+                      },
+                      child: const Text('Sair',
+                          style: TextStyle(color: Colors.black)),
+                    ),
+                  ],
+                ));
+      }
       startGame();
     }
 
@@ -187,6 +223,8 @@ class GameScreenState extends State<GameScreen> {
 
                 //ball
                 Ball(x: ballX, y: ballY),
+
+                //Upper buttons
                 Positioned(
                   top: 0,
                   left: 0,
@@ -209,6 +247,10 @@ class GameScreenState extends State<GameScreen> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(16))),
                       ),
+                      Text("Jogador 1: $counter1",
+                          style: TextStyle(color: Colors.white)),
+                      Text("Jogador 2: $counter2",
+                          style: TextStyle(color: Colors.white)),
                       ElevatedButton(
                         onPressed: () {
                           setState(() {
@@ -227,6 +269,8 @@ class GameScreenState extends State<GameScreen> {
                     ],
                   ),
                 ),
+
+                //Bottom buttons
                 Positioned(
                   bottom: 0,
                   left: 0,
