@@ -55,7 +55,7 @@ class GameScreenState extends State<GameScreen> {
     }
 
     // Vertical Movement
-      
+
     if (up) {
       if (ballY <= 1) {
         ballY += element; // Increment the y coordinate to move down
@@ -73,7 +73,6 @@ class GameScreenState extends State<GameScreen> {
 
   // Ball direction controller
   void ballDirection() {
-
     // Horizontal direction and colisions
     if (ballX >= rightBarX &&
         ballY >= (rightBarY - 0.25) &&
@@ -87,8 +86,8 @@ class GameScreenState extends State<GameScreen> {
       right = true; // Change the direction to move right
       left = false;
       changeAngle();
-    
-    // Resets ball position when it hits either left or right wall
+
+      // Resets ball position when it hits either left or right wall
     } else if (ballX > rightBarX) {
       print("ponto pra a esquerda");
       ballX = 0;
@@ -104,7 +103,7 @@ class GameScreenState extends State<GameScreen> {
       //
       //Add code here to increment right player's points
       //
-      startGame(); 
+      startGame();
     }
 
     // Adjust ball movement when it hits the upper and bottom walls
@@ -157,16 +156,16 @@ class GameScreenState extends State<GameScreen> {
     Random random = Random();
     return random.nextInt(2);
   }
-    int randomizerY() {
+
+  int randomizerY() {
     Random random = Random();
     return random.nextInt(2);
   }
-  void changeAngle(){
-    final random = Random();
-      element = angle[random.nextInt(angle.length)];
-  }
-  
 
+  void changeAngle() {
+    final random = Random();
+    element = angle[random.nextInt(angle.length)];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -198,7 +197,10 @@ class GameScreenState extends State<GameScreen> {
                       ElevatedButton(
                         onPressed: () {
                           setState(() {
-                            leftBarY -= 0.1; // adjust the value as needed
+                            if (leftBarY <= -0.9) {
+                            } else {
+                              leftBarY -= 0.1;
+                            }
                           });
                         },
                         child: const Icon(Icons.arrow_upward),
@@ -210,7 +212,10 @@ class GameScreenState extends State<GameScreen> {
                       ElevatedButton(
                         onPressed: () {
                           setState(() {
-                            rightBarY -= 0.1; // adjust the value as needed
+                            if (rightBarY <= -0.9) {
+                            } else {
+                              rightBarY -= 0.1;
+                            }
                           });
                         },
                         child: const Icon(Icons.arrow_upward),
@@ -232,7 +237,10 @@ class GameScreenState extends State<GameScreen> {
                       ElevatedButton(
                         onPressed: () {
                           setState(() {
-                            leftBarY += 0.1; // adjust the value as needed
+                            if (leftBarY >= 0.9) {
+                            } else {
+                              leftBarY += 0.1;
+                            }
                           });
                         },
                         child: const Icon(Icons.arrow_downward),
@@ -244,7 +252,10 @@ class GameScreenState extends State<GameScreen> {
                       ElevatedButton(
                         onPressed: () {
                           setState(() {
-                            rightBarY += 0.1; // adjust the value as needed
+                            if (rightBarY >= 0.9) {
+                            } else {
+                              rightBarY += 0.1;
+                            }
                           });
                         },
                         child: const Icon(Icons.arrow_downward),
