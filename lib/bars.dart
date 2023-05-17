@@ -5,8 +5,7 @@ class Bars extends StatefulWidget {
   //Coordinates
   final x;
   final y;
-  final color;
-  const Bars({Key? key, this.x, this.y, this.color}) : super(key: key);
+  const Bars({Key? key, this.x, this.y}) : super(key: key);
 
   @override
   BarsState createState() => BarsState();
@@ -20,10 +19,9 @@ class BarsState extends State<Bars> {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
         child: Container(
-          //color: widget.color,
           width: 20,
-          height: MediaQuery.of(context).size.width / 5,
-          color: widget.color,
+          height: 100,
+          color: Colors.white,
         ),
       ),
     );
