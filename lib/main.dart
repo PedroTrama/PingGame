@@ -13,8 +13,14 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations(//sets the whole app to landscape mode
-      [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
+  //sets the whole app to landscape mode
+  SystemChrome.setPreferredOrientations(
+    [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight],
+  );
+  //removes the phone UI
+  SystemChrome.setEnabledSystemUIMode(
+    SystemUiMode.immersiveSticky,
+  );
   await Hive.initFlutter();
   await Hive.openBox('settings');
   await Hive.openBox('userData');
