@@ -28,7 +28,7 @@ class GameScreenState extends State<GameScreen> {
   bool left = false;
   bool up = false;
   bool down = false;
-  var angle = [0.01, 0.02, 0.03, 0.04, 0.05];
+  var angle = [0.01, 0.02, 0.03];
   double element = 0.01;
 
   // Bars variables
@@ -57,7 +57,6 @@ class GameScreenState extends State<GameScreen> {
     }
 
     // Vertical Movement
-
     if (up) {
       if (ballY <= 1) {
         ballY += element; // Increment the y coordinate to move down
@@ -76,15 +75,15 @@ class GameScreenState extends State<GameScreen> {
   // Ball direction controller
   void ballDirection() {
     // Horizontal direction and colisions
-    if (ballX >= rightBarX &&
-        ballY >= (rightBarY - 0.25) &&
-        ballY <= (rightBarY + 0.25)) {
+    if (ballX >= (rightBarX - 0.06) &&
+        ballY >= (rightBarY - 0.32) &&
+        ballY <= (rightBarY + 0.32)) {
       right = false; // Change the direction to move left
       left = true;
       changeAngle();
-    } else if (ballX <= leftBarX &&
-        ballY >= (leftBarY - 0.25) &&
-        ballY <= (leftBarY + 0.25)) {
+    } else if (ballX <= (leftBarX + 0.06) &&
+        ballY >= (leftBarY - 0.32) &&
+        ballY <= (leftBarY + 0.32)) {
       right = true; // Change the direction to move right
       left = false;
       changeAngle();
@@ -94,11 +93,13 @@ class GameScreenState extends State<GameScreen> {
       ballX = 0;
       ballY = 0;
       counter1 += 1;
-      if (counter1 == 5) {
+      /*if (counter1 == 5) {
+        gameHasStarted = false;
         showDialog(
             context: context,
             builder: (context) => AlertDialog(
                   title: const Text('Vitória do jogador 1'),
+                  backgroundColor: Color(0xffd23569),
                   actions: <Widget>[
                     TextButton(
                       onPressed: () {
@@ -113,17 +114,19 @@ class GameScreenState extends State<GameScreen> {
                     ),
                   ],
                 ));
-      }
-      startGame();
+        startGame();
+      }*/
     } else if (ballX < leftBarX) {
       ballX = 0;
       ballY = 0;
       counter2 += 1;
-      if (counter2 == 5) {
+      /*if (counter2 == 5) {
+        gameHasStarted = false;
         showDialog(
             context: context,
             builder: (context) => AlertDialog(
                   title: const Text('Vitória do jogador 2'),
+                  backgroundColor: Color(0xff398ae8),
                   actions: <Widget>[
                     TextButton(
                       onPressed: () {
@@ -138,8 +141,8 @@ class GameScreenState extends State<GameScreen> {
                     ),
                   ],
                 ));
-      }
-      startGame();
+        startGame();
+      }*/
     }
 
     // Adjust ball movement when it hits the upper and bottom walls
@@ -168,6 +171,8 @@ class GameScreenState extends State<GameScreen> {
   void startGame() {
     if (gameHasStarted == false) {
       gameHasStarted = true;
+      counter1 = 0;
+      counter2 = 0;
       if (randomizerX() == 0) {
         right = true;
       } else {
@@ -179,7 +184,7 @@ class GameScreenState extends State<GameScreen> {
         down = true;
       }
       changeAngle();
-      Timer.periodic(Duration(milliseconds: 35), (timer) {
+      Timer.periodic(Duration(milliseconds: 25), (timer) {
         setState(() {
           moveBall();
         });
@@ -216,19 +221,19 @@ class GameScreenState extends State<GameScreen> {
                 StartGame(gameHasStarted: gameHasStarted),
 
                 //left Bar
-                Bars(x: leftBarX, y: leftBarY),
+                Bars(x: leftBarX, y: leftBarY, color: Color(0xffd23569)),
 
                 //right Bar
-                Bars(x: rightBarX, y: rightBarY),
+                Bars(x: rightBarX, y: rightBarY, color: Color(0xff398ae8)),
 
                 //ball
                 Ball(x: ballX, y: ballY),
 
                 //Upper buttons
                 Positioned(
-                  top: 0,
-                  left: 0,
-                  right: 0,
+                  top: 50,
+                  left: 110,
+                  right: 110,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -248,9 +253,13 @@ class GameScreenState extends State<GameScreen> {
                                 borderRadius: BorderRadius.circular(16))),
                       ),
                       Text("Jogador 1: $counter1",
-                          style: TextStyle(color: Colors.white)),
+                          style: TextStyle(
+                              color: Color(0xffd23569),
+                              fontWeight: FontWeight.bold)),
                       Text("Jogador 2: $counter2",
-                          style: TextStyle(color: Colors.white)),
+                          style: TextStyle(
+                              color: Color(0xff398ae8),
+                              fontWeight: FontWeight.bold)),
                       ElevatedButton(
                         onPressed: () {
                           setState(() {
@@ -272,7 +281,7 @@ class GameScreenState extends State<GameScreen> {
 
                 //Bottom buttons
                 Positioned(
-                  bottom: 0,
+                  bottom: 50,
                   left: 0,
                   right: 0,
                   child: Row(
@@ -323,6 +332,7 @@ class GameScreenState extends State<GameScreen> {
                   actions: <Widget>[
                     TextButton(
                       onPressed: () {
+                        gameHasStarted = false;
                         Navigator.push(
                           context,
                           MaterialPageRoute(
