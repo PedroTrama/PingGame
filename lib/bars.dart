@@ -5,7 +5,8 @@ class Bars extends StatefulWidget {
   //Coordinates
   final x;
   final y;
-  const Bars({Key? key, this.x, this.y}) : super(key: key);
+  final color;
+  const Bars({Key? key, this.x, this.y, this.color}) : super(key: key);
 
   @override
   BarsState createState() => BarsState();
@@ -21,7 +22,7 @@ class BarsState extends State<Bars> {
         child: Container(
           width: 20,
           height: 100,
-          color: Colors.white,
+          color: widget.color,
         ),
       ),
     );
